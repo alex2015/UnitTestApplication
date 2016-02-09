@@ -4,3 +4,9 @@
 
 /UnitTestApplication/bin/Debug
 /UnitTestApplication/obj/Debug
+/UnitTestApplication/bin
+/ConsoleApplication/obj/Debug
+/ConsoleApplication/bin/Debug
+/UnitTestApplication/UnitTestProject/bin/Debug
+/UnitTestApplication/UnitTestProject/obj/Debug
+/UnitTestApplication/TestResults

@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace UnitTestApplication
 {
@@ -10,6 +6,9 @@ namespace UnitTestApplication
     {
         static void Main(string[] args)
         {
+            var r = new Replacement();
+            r.Replace();
+            Console.ReadKey();
         }
     }
 }
