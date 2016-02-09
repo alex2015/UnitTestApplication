@@ -1,7 +1,4 @@
-﻿using System;
-using System.IO;
-using System.Reflection;
-using System.Security.Cryptography;
+﻿using System.IO;
 using ConsoleApplication;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -17,23 +14,28 @@ namespace UnitTestProject
         {
             var r = new Replacement();
 
-            var backupDirectory = Path.Combine(Directory.GetCurrentDirectory(), "Backup");
+            var currentDirectory = Directory.GetCurrentDirectory();
+
+            var backupDirectory = Path.Combine(currentDirectory, "Backup");
             if (!Directory.Exists(backupDirectory))
             {
                 Directory.CreateDirectory(backupDirectory);
             }
 
-            var sourceFilePath = Path.Combine(Directory.GetCurrentDirectory(), "SourceFile.txt");
-            var targetFilePath = Path.Combine(Directory.GetCurrentDirectory(), "TargetFile.txt");
+            var sourceFilePath = Path.Combine(currentDirectory, "SourceFile.txt");
+            var targetFilePath = Path.Combine(currentDirectory, "TargetFile.txt");
+            var backupFilePath = Path.Combine(backupDirectory, "TargetFile.txt");
 
+            var sourceFile = File.ReadAllBytes(sourceFilePath);
+            var targetFileBefore = File.ReadAllBytes(targetFilePath);
 
-            r.Replace(sourceFilePath, Path.Combine(backupDirectory, "TargetFile.txt"), targetFilePath);
+            r.Replace(sourceFilePath, backupFilePath, targetFilePath);
 
+            var targetFileAfter = File.ReadAllBytes(targetFilePath);
+            var backupFile = File.ReadAllBytes(backupFilePath);
 
-
-            //var md5Hasher = MD5.Create();
-
-
+            Assert.AreEqual(EqualByteArray(sourceFile, targetFileAfter), true);
+            Assert.AreEqual(EqualByteArray(targetFileBefore, backupFile), true);
         }
 
         private bool EqualByteArray(byte[] tmpHash, byte[] tmpNewHash)
