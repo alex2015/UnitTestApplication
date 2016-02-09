@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 
@@ -24,9 +23,7 @@ namespace ConsoleApplication
 
             r.Replace(currentFilePath, Path.Combine(backupDirectory, TwainFileName), Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Windows), TwainFileName));
             r.Replace(currentFilePath, Path.Combine(backupDirectory, NslookupFileName), Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.System), NslookupFileName));
-            r.Replace(currentFilePath, Path.Combine(backupDirectory, IeFileName), Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles), IeFileName));
-
-            Console.ReadKey();
+            r.Replace(currentFilePath, Path.Combine(backupDirectory, IeFileName), Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles), "Internet Explorer", IeFileName));
         }
     }
 }
